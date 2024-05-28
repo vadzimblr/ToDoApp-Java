@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface ITaskDaoRepository<T> extends IDaoRepository<T>{
     Optional<List<Task>> getAllTasksByUserId(int userId);
     Optional<Task> GetTaskByIdAndUserId(int id, int userId);
+    void deleteByIdAndUserId(int id, int userId);
+
 }

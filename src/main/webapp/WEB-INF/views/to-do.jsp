@@ -48,7 +48,7 @@
                 <a href="controller?action=viewTask&id=${task.getId()}">${task.title}</a>
                 <div>
                     <a href="controller?action=editTask&id=${task.getId()}" class="btn btn-secondary btn-sm">Edit</a>
-                    <button onclick="deleteTask(1)" class="btn btn-danger btn-sm">Delete</button>
+                    <button onclick="deleteTask(${task.getId()})" class="btn btn-danger btn-sm">Delete</button>
                 </div>
             </div>
         </c:forEach>

@@ -79,6 +79,11 @@ public class TaskDAO extends GenericDAO<Task> implements ITaskDaoRepository<Task
     }
 
     @Override
+    public void deleteById(int id) {
+
+    }
+
+    @Override
     protected Task mapResultSetToEntity(ResultSet resultSet){
         Task task = new Task();
         try {
@@ -128,6 +133,18 @@ public class TaskDAO extends GenericDAO<Task> implements ITaskDaoRepository<Task
             e.printStackTrace();
         }
         return Optional.ofNullable(task);
+    }
+
+    @Override
+    public void deleteByIdAndUserId(int id, int userId) {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement statement = connection.prepareStatement("DELETE FROM tasks WHERE id = ? AND user_id = ?")) {
+            statement.setObject(1, id);
+            statement.setObject(2, userId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

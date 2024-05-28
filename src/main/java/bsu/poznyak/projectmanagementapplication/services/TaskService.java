@@ -48,4 +48,9 @@ public class TaskService implements ITaskService{
         return taskDaoRepository.GetTaskByIdAndUserId(id,user_id);
     }
 
+    @Override
+    public void DeleteTaskByIdAndUserId(int id, int user_id) {
+        taskDaoRepository.deleteByIdAndUserId(id,user_id);
+    }
+
 }

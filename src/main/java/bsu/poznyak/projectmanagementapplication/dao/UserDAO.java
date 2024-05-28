@@ -89,6 +89,11 @@ public class UserDAO extends GenericDAO<User> implements IUserDaoRepository<User
     }
 
     @Override
+    public void deleteById(int id) {
+
+    }
+
+    @Override
     protected User mapResultSetToEntity(ResultSet resultSet) {
         try {
             int id = resultSet.getInt("id");

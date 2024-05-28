@@ -25,8 +25,10 @@ public class AuthorizationFilter implements Filter {
 
         boolean loggedIn = (session != null && session.getAttribute("username") != null);
         boolean todoRequest = "todo".equals(action);
+        boolean deleteTaskRequest = "deleteTask".equals(action);
+        boolean viewTask = "viewTask".equals(action);
         boolean logoutRequest = "logout".equals(action);
-        if ((todoRequest || logoutRequest) && !loggedIn) {
+        if ((viewTask|| deleteTaskRequest || todoRequest || logoutRequest) && !loggedIn) {
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/controller?action=login");
         } else {
             chain.doFilter(request, response);
