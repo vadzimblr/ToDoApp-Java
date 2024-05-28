@@ -29,11 +29,22 @@
     </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Task Manager</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/">Welcome Page</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/controller?action=logout">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>To-Do List</h1>
         <a href="controller?action=createTask" class="btn btn-success mr-2">Create Task</a>
-        <a href="controller?action=logout" class="btn btn-danger">Logout</a>
     </div>
     <div class="list-group">
         <div class="list-group-item todo-item">

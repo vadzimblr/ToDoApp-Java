@@ -19,6 +19,10 @@ public class CommandFactory {
                 return new LoginPostCommand();
             case "logout_GET":
                 return new LogoutGetCommand();
+            case "createTask_GET":
+                return new CreateTaskGetCommand();
+            case "createTask_POST":
+                return new CreateTaskPostCommand();
             case "todo_GET":
                 return new ToDoGetCommand();
             default:

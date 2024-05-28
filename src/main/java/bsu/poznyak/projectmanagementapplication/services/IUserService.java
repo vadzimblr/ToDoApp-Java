@@ -7,4 +7,5 @@ import java.util.Optional;
 public interface IUserService {
     Optional<User> Register(String username, String password);
     Optional<User> Login(String username, String password);
+    Optional<Integer> GetUserIdByUsername(String username);
 }

@@ -39,6 +39,12 @@ public class UserService implements IUserService{
         return user;
     }
 
+    @Override
+    public Optional<Integer> GetUserIdByUsername(String username) {
+        var user = userDaoRepository.getByUsername(username);
+        return user.map(User::getId);
+    }
+
 
 }
 

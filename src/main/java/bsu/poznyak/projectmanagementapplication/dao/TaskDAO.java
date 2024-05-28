@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class TaskDAO extends GenericDAO<Task>  {
+public class TaskDAO extends GenericDAO<Task> implements ITaskDaoRepository<Task> {
 
 
     public TaskDAO(IGetConnection connectionPool) {
