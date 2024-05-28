@@ -10,6 +10,6 @@ import java.io.IOException;
 public class ToDoGetCommand implements ICommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("to-do.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/to-do.jsp").forward(request, response);
     }
 }

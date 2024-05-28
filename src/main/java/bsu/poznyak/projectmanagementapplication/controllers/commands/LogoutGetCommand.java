@@ -8,9 +8,11 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-public class RegisterGetCommand implements ICommand {
+public class LogoutGetCommand implements ICommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/register.jsp").forward(request, response);
+        HttpSession session = request.getSession(false);
+        session.invalidate();
+        response.sendRedirect("controller?action=login");
     }
 }

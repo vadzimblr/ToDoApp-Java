@@ -12,10 +12,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
-    <link href="resources/static/css/all.min.css" rel="stylesheet">
-    <link href="resources/static/css/bootstrap.css" rel="stylesheet">
-    <link href="resources/static/css/bootstrap-grid.css" rel="stylesheet">
-    <link href="resources/static/css/bootstrap-reboot.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/static/css/all.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/static/css/bootstrap.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/static/css/bootstrap-grid.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/static/css/bootstrap-reboot.css" rel="stylesheet">
     <style>
         .todo-item {
             display: flex;

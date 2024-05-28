@@ -17,18 +17,13 @@ public class RegisterPostCommand implements ICommand {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        HttpSession session = request.getSession(false);
-        if (session != null && session.getAttribute("username") != null) {
-            response.sendRedirect("controller?action=todo");
-            return;
-        }
         IUserService userService = ServiceFactory.getUserService();
 
         if(userService.Register(username,password).isEmpty()){
             response.getWriter().write("Registration failed :(. Please try again");
         }
         else{
-            session = request.getSession();
+            HttpSession session = request.getSession();
             session.setAttribute("username", username);
             response.sendRedirect("controller?action=todo");
         }

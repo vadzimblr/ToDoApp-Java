@@ -24,12 +24,17 @@ public class SessionFilter implements Filter {
 
         String loginURI = httpRequest.getContextPath() + "/controller?action=login";
         String registerURI = httpRequest.getContextPath() + "/controller?action=register";
-        String rootURI = httpRequest.getContextPath() + "/";
+        String rootURI = httpRequest.getContextPath() + "/*";
 
         boolean loggedIn = (session != null && session.getAttribute("username") != null);
-        boolean loginRequest = httpRequest.getRequestURI().equals(loginURI);
-        boolean registerRequest = httpRequest.getRequestURI().equals(registerURI);
-        boolean rootRequest = httpRequest.getRequestURI().equals(rootURI);
+
+        String requestURI = httpRequest.getRequestURI();
+        String queryString = httpRequest.getQueryString();
+        String fullRequestURL = queryString == null ? requestURI : requestURI + "?" + queryString;
+
+        boolean loginRequest = fullRequestURL.equals(loginURI);
+        boolean registerRequest = fullRequestURL.equals(registerURI);
+        boolean rootRequest = fullRequestURL.equals(rootURI);
 
         if (loggedIn && (loginRequest || registerRequest || rootRequest)) {
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/controller?action=todo");

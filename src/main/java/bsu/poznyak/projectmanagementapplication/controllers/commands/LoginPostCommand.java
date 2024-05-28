@@ -16,18 +16,13 @@ public class LoginPostCommand implements ICommand {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        HttpSession session = request.getSession(false);
-        if (session != null && session.getAttribute("username") != null) {
-            response.sendRedirect("controller?action=todo");
-            return;
-        }
         IUserService userService = ServiceFactory.getUserService();
         if(userService.Login(username,password).isEmpty()){
-            response.sendRedirect("register.jsp");
+            response.sendRedirect("controller?action=register");
             return;
         }
         else{
-            session = request.getSession();
+            HttpSession session = request.getSession();
             session.setAttribute("username", username);
         }
         response.sendRedirect("controller?action=todo");
