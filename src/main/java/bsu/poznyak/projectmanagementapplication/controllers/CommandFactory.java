@@ -29,6 +29,10 @@ public class CommandFactory {
                 return new ViewTaskGetCommand();
             case "deleteTask_GET":
                 return new DeleteTaskGetCommand();
+            case "editTask_GET":
+                return new EditTaskGetCommand();
+            case "editTask_POST":
+                return new EditTaskPostCommand();
             default:
                 throw new IllegalArgumentException("No such command: " + action);
         }

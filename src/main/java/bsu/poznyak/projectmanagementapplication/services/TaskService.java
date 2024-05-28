@@ -53,4 +53,13 @@ public class TaskService implements ITaskService{
         taskDaoRepository.deleteByIdAndUserId(id,user_id);
     }
 
+    @Override
+    public void UpdateTask(String title, String description, Timestamp deadline, int task_id, int user_id) {
+        if(!Validator.validateTaskParameters(title,description,deadline,user_id)){
+            return;
+        }
+        Task task = new Task(task_id,title,description,deadline,user_id);
+        taskDaoRepository.update(task);
+    }
+
 }

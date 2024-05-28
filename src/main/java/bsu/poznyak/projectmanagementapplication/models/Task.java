@@ -20,4 +20,12 @@ public class Task {
         this.deadline = deadline;
         this.user_id = user_id;
     }
+
+    public Task(Integer id, String title, String description, Timestamp deadline, int user_id) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.deadline = deadline;
+        this.user_id = user_id;
+    }
 }

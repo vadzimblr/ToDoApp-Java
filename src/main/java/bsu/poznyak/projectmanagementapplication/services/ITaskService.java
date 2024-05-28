@@ -11,4 +11,5 @@ public interface ITaskService {
     Optional<List<Task>> GetAllTasks(int user_id);
     Optional<Task> GetTaskByIdAndUserId(int id, int user_id);
     void DeleteTaskByIdAndUserId(int id, int user_id);
+    void UpdateTask(String title, String description, Timestamp deadline, int task_id, int user_id);
 }
