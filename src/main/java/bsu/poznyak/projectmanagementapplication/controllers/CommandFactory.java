@@ -25,6 +25,8 @@ public class CommandFactory {
                 return new CreateTaskPostCommand();
             case "todo_GET":
                 return new ToDoGetCommand();
+            case "viewTask_GET":
+                return new ViewTaskGetCommand();
             default:
                 throw new IllegalArgumentException("No such command: " + action);
         }

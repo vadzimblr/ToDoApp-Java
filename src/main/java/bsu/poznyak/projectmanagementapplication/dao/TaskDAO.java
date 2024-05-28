@@ -5,6 +5,7 @@ import bsu.poznyak.projectmanagementapplication.models.Task;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 public class TaskDAO extends GenericDAO<Task> implements ITaskDaoRepository<Task> {
@@ -81,6 +82,7 @@ public class TaskDAO extends GenericDAO<Task> implements ITaskDaoRepository<Task
     protected Task mapResultSetToEntity(ResultSet resultSet){
         Task task = new Task();
         try {
+            task.setId(Integer.valueOf(resultSet.getString("id")));
             task.setTitle(resultSet.getString("title"));
             task.setDescription(resultSet.getString("description"));
             task.setDeadline(resultSet.getTimestamp("deadline"));
@@ -91,5 +93,41 @@ public class TaskDAO extends GenericDAO<Task> implements ITaskDaoRepository<Task
         return task;
     }
 
+
+    @Override
+    public Optional<List<Task>> getAllTasksByUserId(int userId) {
+        List<Task> tasks = new ArrayList<>();
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM tasks WHERE user_id = ?")) {
+            statement.setInt(1, userId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Task task = mapResultSetToEntity(resultSet);
+                    tasks.add(task);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tasks.isEmpty() ? Optional.empty() : Optional.of(tasks);
+    }
+
+    @Override
+    public Optional<Task> GetTaskByIdAndUserId(int id, int userId) {
+        Task task = null;
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM tasks WHERE id = ? AND user_id = ?")) {
+            statement.setInt(1, id);
+            statement.setInt(2, userId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    task = mapResultSetToEntity(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Optional.ofNullable(task);
+    }
 
 }

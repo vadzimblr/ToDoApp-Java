@@ -5,6 +5,7 @@ import bsu.poznyak.projectmanagementapplication.dao.ITaskDaoRepository;
 import bsu.poznyak.projectmanagementapplication.models.Task;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Optional;
 
 public class TaskService implements ITaskService{
@@ -36,4 +37,15 @@ public class TaskService implements ITaskService{
         taskDaoRepository.insert(task);
         return Optional.of(task);
     }
+
+    @Override
+    public Optional<List<Task>> GetAllTasks(int user_id) {
+        return taskDaoRepository.getAllTasksByUserId(user_id);
+    }
+
+    @Override
+    public Optional<Task> GetTaskByIdAndUserId(int id, int user_id) {
+        return taskDaoRepository.GetTaskByIdAndUserId(id,user_id);
+    }
+
 }

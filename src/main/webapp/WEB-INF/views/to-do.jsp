@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: vadim
-  Date: 26.05.2024
-  Time: 19:18
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="ru">
@@ -47,13 +41,17 @@
         <a href="controller?action=createTask" class="btn btn-success mr-2">Create Task</a>
     </div>
     <div class="list-group">
-        <div class="list-group-item todo-item">
-            <a href="controller?action=viewTask&id=1">Задача 1</a>
-            <div>
-                <a href="controller?action=editTask&id=1" class="btn btn-secondary btn-sm">Edit</a>
-                <button onclick="deleteTask(1)" class="btn btn-danger btn-sm">Delete</button>
+
+        <jsp:useBean id="tasks" scope="request" type="java.util.Optional"/>
+        <c:forEach var="task" items="${tasks.get()}">
+            <div class="list-group-item todo-item">
+                <a href="controller?action=viewTask&id=${task.getId()}">${task.title}</a>
+                <div>
+                    <a href="controller?action=editTask&id=${task.getId()}" class="btn btn-secondary btn-sm">Edit</a>
+                    <button onclick="deleteTask(1)" class="btn btn-danger btn-sm">Delete</button>
+                </div>
             </div>
-        </div>
+        </c:forEach>
     </div>
 </div>
 
